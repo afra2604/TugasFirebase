@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 edtDeskripsi.setText(item.deskripsi)
                 edtHarga.setText(item.harga)
             }
-            listData.onItemClickListener = AdapterView.OnItemClickListener{
+            listData.onItemLongClickListener = AdapterView.OnItemLongClickListener{
                     adapterView, _, i, _ ->
                 val item = adapterView.adapter.getItem(i) as Barang
                 deleteBudget(item)
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             }
     }
     private fun deleteBudget(barang: Barang){
-        budgetCollectionRef.document(updateId).delete()
+        budgetCollectionRef.document(barang.id).delete()
             .addOnFailureListener{
                 Log.d("MainActivity", "Error deleting budget : ",
                     it)
